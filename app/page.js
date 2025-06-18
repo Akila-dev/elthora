@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import { TestGround } from '@/containers';
+import { HomeCanvas } from "@/containers";
 
 export default function Home() {
-	return (
-		<div className="">
-			<TestGround />
-		</div>
-	);
+  return (
+    <div className="w-full h-screen">
+      <HomeCanvas />
+    </div>
+  );
 }
