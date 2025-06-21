@@ -1,19 +1,101 @@
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Space+Grotesk:wght@300..700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
 
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
+  --bg: #ffffff;
+  --fg: #171717;
+  /* --dark: #3b3c4d; */
+  --dark: #2b2d42;
+  --darker: #020300;
+  --light: #f2f2f2;
+
+  --brand-1: #616ee0;
+  --brand-2: #c2c8ff;
+
+  --neutral: #f4eea9;
+  --highlight: #f7ff58;
+
+  --font-geist-sans: "Geist Sans", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
 }
 
 @theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-dark: var(--dark);
+  --color-darker: var(--darker);
+  --color-light: var(--light);
+  --color-brand-1: var(--brand-1);
+  --color-brand-2: var(--brand-2);
+  --color-neutral: var(--neutral);
+  --color-highlight: var(--highlight);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --spacing: 1em;
+  --radius: 1em;
+  --breakpoint-xs: 360px;
+
+  --font-base: "Urbanist", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-heading: "Sora", sans-serif;
 }
 
 body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans);
+  @apply font-base leading-[150%] text-fg;
+}
+
+h1,
+h2 {
+  @apply font-heading;
+}
+
+h1,
+h2,
+h3,
+.h3 {
+  @apply font-semibold;
+}
+
+h1,
+.h1 {
+  @apply text-[13.5vw] xs:text-2xl sm:text-[7.5vw] md:text-[7vw] lg:text-[5.5vw] leading-[100%];
+}
+
+h2,
+.h2 {
+  @apply text-[9vw] xs:text-xl sm:text-[6vw] md:text-[5.5vw] lg:text-[3.75vw] leading-[120%];
+}
+
+h3,
+.h3 {
+  @apply text-[6vw] xs:text-lg sm:text-[3.5vw] md:text-[3vw] lg:text-[2vw];
+}
+
+h4 {
+  @apply text-[5vw] xs:text-base sm:text-[3vw] md:text-[2.5vw] lg:text-[1.5vw] font-medium;
+}
+
+p,
+a,
+button,
+input,
+.p,
+div,
+label,
+textarea {
+  @apply text-[4.5vw] xs:text-sm md:text-[1.8vw] lg:text-[1.2vw] leading-[150%] font-medium;
+}
+
+/* UTILITIES */
+.flex-center {
+  @apply flex justify-center items-center gap-1;
+}
+
+.flex-between {
+  @apply flex justify-between items-center gap-1;
 }

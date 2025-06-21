@@ -9,34 +9,11 @@ Files: looking_at_elthora.glb [18.55MB] > C:\Users\akila\OneDrive\Desktop\Elthor
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 
-const bodyMaterial = (
-  <meshPhysicalMaterial
-    color="#c2c8ff"
-    roughness={0.25}
-    metalness={0.05}
-    sheen={1}
-    sheenColor="#ffffff"
-    sheenRoughness={0.6}
-    clearcoat={0.3}
-    clearcoatRoughness={0.2}
-    envMapIntensity={1}
-    reflectivity={0.5}
-  />
-);
-const clothMaterial = (
-  <meshPhysicalMaterial
-    color="#616ee0"
-    roughness={0.25}
-    metalness={0.05}
-    sheen={1}
-    sheenColor="#ffffff"
-    sheenRoughness={0.6}
-    clearcoat={0.3}
-    clearcoatRoughness={0.2}
-    envMapIntensity={1}
-    reflectivity={0.5}
-  />
-);
+import {
+  bodyMaterial,
+  clothMaterial,
+  furnitureMaterial,
+} from "@/utils/materials";
 
 export default function Model(props) {
   const { nodes, materials } = useGLTF("/looking_at_elthora-transformed.glb");

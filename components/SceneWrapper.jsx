@@ -11,9 +11,9 @@ gsap.registerPlugin(useGSAP);
 
 const SceneWrapper = () => {
   return (
-    <Suspense fallback={null}>
+    <>
       <ProductScene />
-    </Suspense>
+    </>
   );
 };
 

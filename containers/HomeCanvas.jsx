@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -9,7 +9,7 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 
-import { SceneWrapper, SelectiveBloom } from "@/components";
+import { SceneWrapper, SelectiveBloom, CanvasLoader } from "@/components";
 
 export default function MainScene() {
   return (
@@ -23,13 +23,17 @@ export default function MainScene() {
       }}
       gl={{ toneMapping: THREE.NoToneMapping }}
     >
-      <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-      <ambientLight intensity={0.2} />
-      <SceneWrapper />
-      <Environment preset="studio" />
-      {/* <SelectiveBloom /> */}
-      <OrbitControls enabled={false} />
-      {/* <OrbitControls enableZoom /> */}
+      <Suspense fallback={<CanvasLoader />}>
+        <PerspectiveCamera makeDefault position={[0, 0, 5]} />
+        <ambientLight intensity={0.2} />
+        <SceneWrapper />
+        {/* <CanvasLoader /> */}
+        <Environment files="/env.jpg" />
+
+        {/* <SelectiveBloom /> */}
+        {/* <OrbitControls enabled={false} /> */}
+        <OrbitControls enableZoom />
+      </Suspense>
     </Canvas>
   );
 }
