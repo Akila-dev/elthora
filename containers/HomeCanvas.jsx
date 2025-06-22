@@ -7,9 +7,10 @@ import {
   PerspectiveCamera,
   Environment,
 } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
-import { SceneWrapper, SelectiveBloom, CanvasLoader } from "@/components";
+import { SceneWrapper, CanvasLoader, Lights } from "@/components";
 
 export default function MainScene() {
   return (
@@ -25,14 +26,20 @@ export default function MainScene() {
     >
       <Suspense fallback={<CanvasLoader />}>
         <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-        <ambientLight intensity={0.2} />
+        <ambientLight intensity={0.7} />
+        <Lights />
         <SceneWrapper />
-        {/* <CanvasLoader /> */}
-        <Environment files="/env.jpg" />
 
+        {/* <CanvasLoader /> */}
+        <Environment preset="sunset" />
+        {/* <Environment files="/env.jpg" /> */}
+
+        <EffectComposer>
+          <Bloom intensity={0.1} luminanceThreshold={0.2} />
+        </EffectComposer>
         {/* <SelectiveBloom /> */}
-        {/* <OrbitControls enabled={false} /> */}
-        <OrbitControls enableZoom />
+        <OrbitControls enabled={false} />
+        {/* <OrbitControls enableZoom /> */}
       </Suspense>
     </Canvas>
   );

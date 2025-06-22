@@ -14,7 +14,7 @@ export default function ProductScene() {
     <group>
       {/* <Wall position={[0, 0, -10]} /> */}
       <ElthoraOrb ref={elthoraOrbRef} scale={1} position={[0, 0.5, 0]} />
-      {/* <LookingAtElthora1
+      <LookingAtElthora1
         position={[-1, finalY, 0]}
         rotation={[0, Math.PI * 0.2, 0]}
         scale={finalScale}
@@ -23,7 +23,7 @@ export default function ProductScene() {
         position={[0.7, finalY, -0.5]}
         rotation={[0, -Math.PI * 0, 0]}
         scale={finalScale}
-      /> */}
+      />
     </group>
   );
 }

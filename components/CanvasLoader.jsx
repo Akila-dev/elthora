@@ -1,30 +1,39 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Html, useProgress } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
-const CanvasLoader = () => {
+const CanvasLoader = ({ onExit }) => {
   const { progress } = useProgress();
 
-  const container = useRef(null);
-  //   const tl = useRef(null);
+  //   const container = useRef(null);
 
-  useGSAP(
-    () => {
-      //   const tl = gsap.timeline({
-      //     defaults: { duration: 1, ease: "power2.inOut", stagger: 0.1 },
-      //   });
-      //   tl.to(".progress-title", {
-      //     // transform: "blur(50px)",
-      //     opacity: 0,
-      //   });
-    },
-    { scope: container }
-  );
+  const ref = useRef();
+
+  useEffect(() => {
+    gsap.fromTo(ref.current, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+
+    return () => {
+      if (onExit) {
+        // Since there's an unmount signal, do nothing here, animation is handled manually
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (onExit) {
+      gsap.to(ref.current, {
+        opacity: 0,
+        y: -20,
+        duration: 0.5,
+        onComplete: onExit,
+      });
+    }
+  }, [onExit]);
 
   return (
     <Html
@@ -40,10 +49,10 @@ const CanvasLoader = () => {
       }}
     >
       <div
-        ref={container}
+        ref={ref}
         className="w-screen h-screen flex-center !bg-dark relative"
       >
-        <div className="flex-center flex-col w-15">
+        <div className="flex-center flex-col w-15 translate-y-1/2">
           <div
             id="progress-bar"
             className="h-[0.3em] w-full bg-white/50 flex justify-start items-center rounded overflow-clip"
